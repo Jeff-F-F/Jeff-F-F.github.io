@@ -1,0 +1,162 @@
+<!-- Updated 9/2/2014 -->
+<html>
+<head>
+<br>
+<title>Jeff Fisher - Game Development Portfolio</title>
+</head>
+<body>
+<body style="background-color: 000000; font-family: Arial; color: 4499FF;">
+<h1 font-family="Arial Black">Jeff Fisher - Game Programmer</h1>
+<p>"The best way to predict the future is to invent it." --Alan Kay</p>
+<hr color="406080">
+<table>
+<tr>
+<td>
+<div id="info">
+<p>Graduated with a bachelors in Game and Simulation Programming in June 2014.</p>
+<p>Working as an IT help desk technician since 2004, 6 years in current position.</p>
+<p>Building suite of procedural map builders for dungeon, surface terrain, cities, and ruins.</p>
+<p>For more information, please contact at <a href="mailto:jeff_f_f@hotmail.com">jeff_f_f@hotmail.com</a></p>
+<br>
+<a href="JeffFisher_Resume.pdf" target="_blank">My Resume</a>
+<br>
+<a href="Bio.pdf" target="_blank">My Bio</a>
+<br>
+<br>
+</div>
+</td>
+<td>
+<div id="pic">
+<img src="flippedpic.png" alt="My pic">
+</div>
+</td>
+</tr>
+</table>
+<hr color="406080">
+<h3>Terrain Map Builder (Unity)</h3>
+<p>When I rebuilt the map builder in the fall of 2013, I designed it to be easily modified and extended to use more or different map tiles, including hex tiles. I was already planning to build a terrain map builder and now I am building it, with the goal of being finished by fall of 2015. Version 0 will only build a 2D overview map that roughly defines the locations of shorelines, mountains, rivers, and hills. Version 1 will use the 2D map as a basis for a 3D map by applying what I call superhexes to the areas defined by each 2D hex, with the superhexes being broken down into individual detailed map hex meshes. Version 2 will procedurally warp each detailed map hex to disguise the repeated use of the same terrain. Version 3 will add streams, lakes, and rivers and is what I anticipate to be the hardest part of the project. Version 4 will convert the 3D map into a heightmap for use in Unity.</p>
+<hr color="406080">
+<h3>Dungeons of Torquemada - extension of senior capstone (Unity)</h3>
+<img src="DoT_Attacked.png" alt="Being attacked by a ghost in Dungeons of Torquemada">
+<p>My extended development of my capstone game project. Using the AI and interface I had developed for the senior project, I added my procedural map builder from the "Fantasy Prototype" project described below. I also created new scripting of my own to replace other functionality that had been contributed by other team members to the senior project. I had been seeing the flat floors of the Fantasy Pototype project for awhile and decided it needed to have variable floor heights added. I modified the map sections to make the floors at one of 3 levels and created ramps that would allow movement between the floors while not causing z-fighting if they overlapped. I had originally expected to make a fairly sophisticated system basing new floor sections on an average of the surrounding floors plus a random element but completely randomized them at first and decided I like how it worked that way. I had also wanted to add support for decorations since NMS, so I created some dungeon decor and modified the code to put that in the game too. About 5-10% of the time the game failed to build a map linking the start and end points, so I added an A* algorithm to verify if the map was connected or rebuild if it was not connected.</p>
+<p>Features of the game include:</p>
+<ul><li>The procedural mapping script and the map sections it used</li>
+<li>A* algorithm to ensure generated map links the enterance and exit</li>
+<li>The various props placed in the dungeon by the procedural map builder</li>
+<li>All textures and normal maps used</li>
+<li>The ghosts and the "unlit" texture for them</li>
+<li>The audio assets including moaning ghosts and dripping water</li>
+<li>The graphics and scripting for the screen-edge flash showing damage</li>
+<li>The various screens and transitions - both UI graphics and scripting (much of it reused from NMS)</li></ul></p>
+<p>Procedural map builder and AI code:</p>
+<p><a href="JeffFisher_ProceduralMapGen_v3.pdf" target="_blank">Procedural map builder, version 3</a> script in C#</p>
+<p><a href="JeffFisher_SpectreAI.pdf" target="_blank">Spectre AI</a> script in C#</p>
+<br>
+<p>Play the <a href="Dungeons_of_Torquemada.html" target="_blank">Unity3D Web Build</a></p>
+<img src="DoT_Hallway.png" alt="Claustrophobic hallway">
+<img src="DoT_OpenRoom.png" alt="Large open room">
+<br>
+<img src="DoT_Sewer.png" alt="Absurdly spacious sewer">
+<img src="DoT_Exit.png" alt="Exit stairway">
+<br>
+<hr color="406080">
+<h3>Prison of Madness - Senior capstone (Unity)</h3>
+<img src="PoM_Ghost.png" alt="Near the end of Prison of Madness">
+<p>Senior capstone class. This project fell victim to overly ambitious goals and inexperience and ended up being scaled back in numerous areas. It was originally based on a very simple prototype and premise, but with 16 weeks to work with instead of the 8 we had on previous projects the scope rapidly expanded to an unachievable level and ended up being scaled back to a disappointingly simple game to complete the course.</p>
+<p>The team member doing level design wanted to create a level based on the idea of <a href="https://www.youtube.com/watch?v=_xFbRecjKQA" target="_blank">Non-Euclidean Geometry</a> and we thought we could pull off a simple version of this using Unity Pro. I had a model that I had created for a bizarre creature that would have looked right at home in this world but had not UV mapped, let alone rigged and animated it, but it seemed like a great idea at the time. Unfortunately I made a small error with disastrous consequences when animating the model and by that time I needed to be working on the AI in order to stay on schedule. I determined it would be faster and far less risky to create, rig, and animate a simple humanoid model than to fix the original one.</p>
+<p>This was my first time creating game AI entirely from scratch. The AI was originally planned to be afraid of light, with the player moving from the safety of one light source to another to complete the game, making it the opposite of a typical stealth game. With the now limited timeframe to complete it and poor strategy for developing the algorithms this was not completed and the enemies would either ignore the lights or get trapped in corners and dead-end hallways. Too late, I hit on the idea of doing a simplified 1D analysis of the steering weights in Excel to get the algorithm right, but by that time the AI could not be completed and I substituted a simple AI script instead. I later determined that a big part of the trouble was caused creating the model at a very small size and then scaling it up by 80x the original size which causes Unity's physics system to treat it like a giant, slow-moving object. The same issue cropped up with the simpler AI but I was able to more easily isolate the cause of the problem to the model itself.</p>
+<p>Additionally, the map completely fell through so we ended up building a simple map out of pieces from the NMS map builder with a stairway added as a goal. I did complete the screen edge flash that was planned to show damage which was a step forward from previous projects. Ultimately, the main takeaway was a valuable learning experience about the dangers of scope creep which my prior projects had generally managed to avoid. My contributions to the final game included:</p>
+<li>All models and textures</li>
+<li>Monster models and animation and AI</li>
+<li>The ghosts and the "unlit" texture for them</li>
+<li>The ghost sound effects which are also used in my extended version</li>
+<li>The graphics and scripting for the screen-edge flash showing damage</li>
+<li>The various screens and transitions - both UI graphics and scripting.</li></ul></p>
+<br>
+<p>Below is the original model for the monster, which was my first major model in Blender instead of 3DS Max:</p>
+<img src="PoM_Horror.PNG" alt="The original monster">
+<br>
+<hr color="406080">
+<h3>Fantasy Prototype - side project during winter of senior year (Unity)</h3>
+<img src="Lizardman.png" alt="Attacking lizardman">
+<p>This was a fantasy FPS I created in the winter of 2013. I had rewritten the procedural map builder to correct the many issues it still had in the fall. This was made to put the new map builder to use, and to experiment with using animations in Unity. It was the map builder, monsters, and crossbow dropped into Nuclear Meiosis Soccer. The individual pieces of the map needed work on the areas they fit together but formed the basis for the map sections used in DoT.</p>
+<br>
+<p>Updated version of <a href="Procedural Map Generator v2.pdf" target="_blank">Map Builder Code</a> in C# (.pdf)
+<br>
+<br>
+<hr color="406080">
+<h3>Nuclear Meiosis Soccer - Junior class project with engine chosen by team (Unity) </h3>
+<img src="NMS_HallwaySm.png" alt="Hallway pic from Nuclear Meiosis Soccer">
+<p>"Nuclear Meiosis Soccer", a school project developed with a 4 person team over an 8-week class using Unity3D. The game is a reinterpretation of the basic shooter formula built around procedural mapping. There was supposed to be a story but implementing it got cut due to time constraints. My contributions were:
+<ul><li>The procedural mapping script and the map sections it used</li>
+<li>All textures used except the crosshair and health bar UI elements</li>
+<li>The pickup models and textures</li>
+<li>The models and textures for the yellow/blue soccer ball and the yellow/red "soccer spikey" upgrade weapon</li>
+<li>The models used for the enemies, which started as a spikey soccer ball that was just a little bit too aggressive-looking.</li>
+<li>Implementing the operation of the pickups</li>
+<li>The various screens and transitions - both UI graphics and scripting </li>
+<li>The scripting to implement the soccer ball.</li></ul></p>
+<p><a href="Recomendation - M Vaganov.pdf" target="_blank">Instructor's letter of recommendation</a></p>
+<table border="0">
+<tr>
+<td>
+Code for procedural map builder: 
+</td>
+<td>
+<a href="Procedural Map Generator v1.pdf" target="_blank">Original (web build version)</a>
+</td>
+</tr>
+</table>
+<p>Play the <a href="TeamF_Gold_WebBuild.html" target="_blank">Unity3D Web Build</a></p>
+<img src="NMS_Hallway2Sm.png" alt="Soccer ball attack from Nuclear Meiosis Soccer">
+<img src="NMS_OozeSm.png" alt="Pic from an ooze lake in Nuclear Meiosis Soccer">
+<br>
+<img src="NMS_ItemsSm.png" alt="All pickup items from Nuclear Meiosis Soccer">
+<img src="NMS_ScreensSm.png" alt="All transition screens from Nuclear Meiosis Soccer">
+<br>
+<hr color="406080">
+<h3>The Escape - Junior project with assigned engine (UDK 3)</h3>
+<img src="Escape_Hall.png" alt="Hallway and enemy from The Escape">
+<p>"The Escape", a school project with a team of 5 students over an 8 week class using UDK to create a game level with indoor and outdoor portions and level streaming. The plot is a postmodern twist on a basic shooter leveraging the tendency of a gamer with a gun when pointed in the direction of other characters with guns to shoot first and ask questions later. My contributions included:
+<ul><li>The outdoor map terrain and sand texture.</li>
+<li>The indoor ceiling, wall, and floor textures.</li>
+<li>Enemy soldier model</li>
+<li>Custom weapon</li>
+<li>Alien models and simple cinematic scene</li>
+<li>Radio voiceovers communicating the plot to the player</li>
+<li>AI scripting and Kismet</li></ul></p>
+<img src="Escape_Desert.png" alt="Desert landscape from The Escape">
+<img src="Escape_Alien.png" alt="Alien cinematic from The Escape">
+<br>
+<img src="Escape_KismetLong.png" alt="AI Kismet from The Escape - zoomed out">
+<img src="Escape_KismetClose.png" alt="AI Kismet from The Escape - zoomed in">
+<br>
+<hr color="406080">
+<h3>Boulder Bluff - side project (C++ and DirectX 9)</h3>
+<img src="BoulderBluff.png" alt="Picture from the original version of BoulderBluff">
+<p>"BoulderBluff" was a simple C++ and Direct3D app I built in my spare time. It never progressed far enough to be playable and looks like ca.1990 3D tech, but it was a good exercise in building a Windows application from the ground up without relying on an established engine or a lot of outside instruction. It was also a good preparation for future classes that covered textured models and building an engine in Direct3D.  The project was based on <a href="http://www.directxtutorial.com/Lesson.aspx?lessonid=9-4-8">www.directxtutorial.com lesson 8</a>.</p>
+<p>Unfortunately this project made me the second most experienced graphics programmer on our team in our 8-week engine and demo class, after the overall project lead. I was picked for graphics team lead and quickly learned that graphics programming is not something to dabble in. I could build the skill set deeply enough to excel, but it is not my focus and switching focus to graphics programming is not compatible with my long term goals.</p>
+<ul><li>Refactored the code since the source was not object oriented and did not separate the code into separate files.</li>
+<li>Extended the tutorial code by adding multiple models to create a simple world.</li>
+<li>Added keyboard input to move around the game.</li>
+<li>Implemented real-time calculation of vertex normals when each model is moved</li>
+<li>Adding blocks as "boulders" that would be pushed around in the game</li>
+<li>Created a collision algorithm but had not implemented the functionality to make the boulders move when pushed</li></ul>
+<br>
+<h3>
+</body>
+</html>
+<hr color="406080">
+<h3>Nybling Hoard - Sophomore pre-rendered demo project (3DS Max)</h3>
+<img src="NyblingHoard.png" alt="Render of area of interest">
+<p>"Nybling Hoard", was a concept for a mining game inspired by the web game Mother Load, and by Minecraft. The purpose of the class was to practice skills for creating pre-rendered video for pitch documents, and for creating multimedia assets for games. Originally the map was created in sections that could be individually destroyed to enlarge the mine but this bogged down 3DS Max on my computer too much so I rebuilt it from a single mesh with the same shape that would have been produced by the individual sections. All textures, models and audio were created by me. </p>
+<br>
+<hr color="406080">
+<h3>Redux  - Sophomore game project (GameMaker 7)</h3>
+<img src="ReduxArt.PNG" alt="Intro screen art">
+<p>"Redux - Grand Tournament of Puzzle Masters", was a puzzle game created using GameMaker. The puzzles were shapes made of tiles with other shapes hidden within them. The challenge was to guess what the hidden shapes were. My contributions were the initial prototype demonstrating the concept, the artwork for the game, a share of the finished puzzle designs, and a share of the tests conducted on the game.</p>
+<a href="ReduxTutorial.wmv">Tutorial video</a>
+<br>
+<h3>
+</body>
+</html>
